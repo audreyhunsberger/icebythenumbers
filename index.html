@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ICE by the Numbers — Audrey Hunsberger</title>
+<meta name="description" content="An empirical assessment of immigration enforcement under the second Trump administration, built from ICE's own detention statistics and individual-level FOIA records.">
+<meta name="author" content="Audrey Hunsberger">
+<meta property="og:title" content="ICE by the Numbers">
+<meta property="og:description" content="An empirical assessment of immigration enforcement under the second Trump administration.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#023425">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23023425'/><rect x='22' y='52' width='14' height='28' fill='%237fe0c6'/><rect x='43' y='36' width='14' height='44' fill='%237fe0c6'/><rect x='64' y='20' width='14' height='60' fill='%237fe0c6'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#023425; --paper:#edf1ee; --mint:#7fe0c6;
+  --g1:#1f6b54; --g2:#3d8f75; --g3:#72b99f; --g4:#a9d0c2;
+  --rule:#c3d2ca; --muted:#4d6a5f; --card:#f7f9f8;
+  --serif:"DM Serif Display", Georgia, "Times New Roman", serif;
+  --sans:"DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"Space Mono", ui-monospace, Menlo, Consolas, monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 24px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--g1);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:2px}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--ink);color:var(--paper);padding:clamp(3rem,8vw,6.5rem) 1.25rem clamp(2.5rem,6vw,4.5rem)}
+.hero-inner{max-width:1120px;margin:0 auto}
+.byline{font-family:var(--mono);font-size:.85rem;color:var(--mint);margin:0 0 2rem;letter-spacing:.02em}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,13vw,9.5rem);line-height:.88;letter-spacing:-.02em;margin:0;max-width:9ch}
+.hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.25rem,2.6vw,1.85rem);line-height:1.25;color:#cfe0d8;margin:1.5rem 0 0;max-width:30ch}
+.findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.75rem 2.5rem;margin:clamp(2.5rem,6vw,4.5rem) 0 0;padding:0;list-style:none}
+.findings li{border-top:2px solid var(--mint);padding-top:1rem}
+.findings strong{display:block;font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.2;color:#fff;margin-bottom:.5rem}
+.findings span{font-size:.95rem;line-height:1.55;color:#c2d6cd}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:1fr;gap:3rem}
+@media (min-width:1000px){.wrap{grid-template-columns:200px minmax(0,1fr)}}
+.toc{display:none}
+@media (min-width:1000px){
+  .toc{display:block;position:sticky;top:calc(env(safe-area-inset-top,0px) + 2rem);align-self:start;padding-top:4rem;font-size:.9rem}
+  .toc p{font-family:var(--serif);font-size:1.1rem;margin:0 0 .75rem}
+  .toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--rule)}
+  .toc a{display:block;padding:.3rem 0 .3rem 1rem;color:var(--muted);text-decoration:none;margin-left:-1px;border-left:2px solid transparent}
+  .toc a:hover,.toc a.active{color:var(--ink);border-left-color:var(--g2)}
+}
+article{min-width:0;padding:3.5rem 0 5rem}
+article > section{margin-bottom:4.5rem}
+.prose{max-width:68ch}
+article p{margin:0 0 1.15rem}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.5vw,2.9rem);line-height:1.05;letter-spacing:-.01em;margin:0 0 1.25rem}
+h3{font-family:var(--serif);font-weight:400;font-size:1.55rem;line-height:1.15;margin:2.75rem 0 .85rem}
+.num{font-variant-numeric:tabular-nums}
+ol.plain,ul.plain{padding-left:1.25rem;margin:0 0 1.15rem}
+ol.plain li,ul.plain li{margin-bottom:.5rem}
+
+/* ---------- Figures ---------- */
+figure{margin:2rem 0 2.5rem;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:1.5rem 1.5rem 1.25rem}
+figcaption{margin-bottom:1rem}
+figcaption .ft{font-family:var(--serif);font-size:1.3rem;line-height:1.2;display:block}
+figcaption .fs{font-size:.9rem;color:var(--muted);font-style:italic}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scroll svg{min-width:560px;width:100%;height:auto;display:block}
+svg .ax{font-family:var(--mono);font-size:12px;fill:var(--muted)}
+svg .ax-yr{font-size:10.5px;fill:#86a096}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;list-style:none;padding:0;margin:0 0 .75rem;font-size:.85rem;color:var(--muted)}
+.legend .sw{display:inline-block;width:.8rem;height:.8rem;border-radius:2px;margin-right:.45rem;vertical-align:-1px}
+.note{font-size:.8rem;color:var(--muted);margin:.75rem 0 0}
+
+/* Cost bars */
+.hbars{display:grid;gap:1.1rem}
+.hbar .row{display:flex;justify-content:space-between;gap:1rem;font-size:.95rem;font-weight:500;margin-bottom:.35rem}
+.hbar .row .num{font-weight:400}
+.track{height:28px;background:#dde5e1;border-radius:3px;overflow:hidden}
+.fill{height:100%}
+
+/* Two ways */
+.twoway .label{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin:1.25rem 0 .5rem}
+.twoway .label:first-of-type{margin-top:0}
+.twoway .how{font-size:.9rem;color:var(--muted)}
+.twoway .verdict{font-family:var(--serif);font-size:1.25rem}
+.stack{display:flex;height:64px;border-radius:3px;overflow:hidden}
+.stack div{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.95rem;color:var(--ink);min-width:0}
+.bracket{display:flex;margin-top:.45rem;font-size:.85rem;gap:0}
+.bracket span{border-top:3px solid var(--g1);padding-top:.35rem;font-weight:700;color:var(--g1)}
+.bracket span.off{border-top:3px solid var(--rule);color:var(--muted);font-weight:400}
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.25rem;margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
+.keys h4{margin:0 0 .3rem;font-size:.95rem;display:flex;align-items:center;gap:.5rem}
+.keys p{margin:0;font-size:.88rem;line-height:1.5;color:var(--muted)}
+.keys .sw{width:.9rem;height:.9rem;border-radius:2px;flex:none}
+
+/* Threat */
+.threatbar{display:flex;height:72px;border-radius:3px;overflow:hidden;margin-bottom:1.25rem}
+.threatbar div{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.85rem}
+.tlist{list-style:none;margin:0;padding:0}
+.tlist li{display:flex;align-items:center;gap:.75rem;padding:.65rem 0;border-bottom:1px solid var(--rule);font-size:.95rem}
+.tlist li:last-child{border-bottom:0}
+.tlist .sw{width:1.1rem;height:1.1rem;border-radius:2px;flex:none}
+.tlist .v{margin-left:auto;font-family:var(--mono);font-size:.88rem;white-space:nowrap}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:480px}
+th{text-align:left;font-weight:700;font-size:.85rem;color:var(--muted);padding:.6rem .75rem;border-bottom:2px solid var(--ink);vertical-align:bottom}
+td{padding:.6rem .75rem;border-bottom:1px solid var(--rule)}
+td.r,th.r{text-align:right}
+td.r{font-family:var(--mono);font-size:.88rem}
+tbody tr:hover{background:#e9efec}
+.inline-bar{display:inline-block;height:.55rem;background:var(--g3);border-radius:1px;margin-right:.5rem;vertical-align:middle}
+
+/* Footer */
+footer{background:var(--ink);color:#c2d6cd;padding:3rem 1.25rem;font-size:.9rem}
+footer .inner{max-width:1120px;margin:0 auto}
+footer strong{font-family:var(--serif);font-weight:400;font-size:1.3rem;color:#fff;display:block;margin-bottom:.5rem}
+footer a{color:var(--mint)}
+
+@media print{
+  .toc{display:none}.hero,footer{background:#fff;color:var(--ink)}
+  .hero .sub,.findings span,.findings strong{color:var(--ink)}
+  figure{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="byline">By Audrey Hunsberger</p>
+    <h1>ICE by the Numbers</h1>
+    <p class="sub">An empirical assessment of immigration enforcement under the second Trump administration</p>
+    <ul class="findings">
+      <li><strong>Enforcement has scaled sharply but remains well short of stated targets.</strong>
+        <span>ICE's FY2026 budget request sought funding for 1,000,000 removals per year; through nine months of FY2026, the agency's own data show a pace less than half that rate.</span></li>
+      <li><strong>The detained population is increasingly people without any conviction.</strong>
+        <span>ICE's "60 percent have a criminal record" figure combines convictions with untested accusations. FOIA data show roughly two-thirds of everyone booked into detention has no conviction of any kind, and that share has risen since January 2025.</span></li>
+      <li><strong>Reported figures likely understate the program's full footprint.</strong>
+        <span>ICE has recorded ten U.S. citizens arrested; independent reporting has identified more than 170. In-custody deaths are similarly undercounted in ICE's headline statistics.</span></li>
+    </ul>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contents">
+    <p>Contents</p>
+    <ol>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#methods">Data and methods</a></li>
+      <li><a href="#scale">Scale, pace, and cost</a></li>
+      <li><a href="#who">Who is being detained</a></li>
+      <li><a href="#stay">Length of stay and bond</a></li>
+      <li><a href="#releases">Court-ordered releases</a></li>
+      <li><a href="#capacity">Capacity and oversight</a></li>
+      <li><a href="#gaps">Gaps in official reporting</a></li>
+      <li><a href="#discussion">Discussion</a></li>
+    </ol>
+  </nav>
+
+  <article>
+    <section id="summary" class="prose">
+      <h2>Executive summary</h2>
+      <p>Since January 2025, immigration enforcement has become one of the most visible and contested areas of federal policy, but public debate over it has been conducted almost entirely in adjectives—"criminal," "invasion," "worst of the worst"—rather than in the enforcement data the government itself is required to publish. This report draws on U.S. Immigration and Customs Enforcement's (ICE) statutorily mandated detention statistics workbook and individual-level records obtained through the Freedom of Information Act (FOIA) to assess enforcement activity, the composition of the detained population, and the operational costs of the current buildup through mid-2026.</p>
+
+      <h3>Introduction</h3>
+      <p>Under a 2020 congressional appropriations requirement, ICE publishes and periodically updates a detention statistics workbook covering every facility holding at least one detainee: length of stay, inspection status, and the number of beds guaranteed under contract regardless of occupancy. Separately, the agency reports removals, book-ins, and other enforcement metrics on a rolling basis. This report analyzes both the ICE-published workbook and a second, more granular dataset (individual-level arrest and detention records obtained via FOIA by the Deportation Data Project at UC Berkeley and UCLA) to build a data-driven picture of enforcement activity under the second Trump administration.</p>
+    </section>
+
+    <section id="methods" class="prose">
+      <h2>Data and methods</h2>
+      <p>Two primary sources underlie this analysis:</p>
+      <ol class="plain">
+        <li>ICE's detention statistics workbooks (FY2025 and FY2026), most recently published July 20, 2026 and accessed September 1, 2026.</li>
+        <li>The Deportation Data Project's FOIA release, covering individual arrests and detention stays from January 21, 2025 (the first full day of the administration) through August 6, 2026, the most recent data available. The Project publishes an accompanying codebook, and a public Data Explorer (currently in beta) allows independent replication of simple queries.</li>
+      </ol>
+      <p>Because ICE's own reporting periods are inconsistent, three conventions are applied throughout:</p>
+      <ul class="plain">
+        <li>Month-by-month series run from February 2025 (the administration's first full month) through June 2026 (the most recent full month reported).</li>
+        <li>Fiscal-year figures are drawn only from FY2026, since FY2025 (beginning October 2024) overlaps with the Biden administration.</li>
+        <li>Snapshot figures are drawn from early July 2026 and labeled as such.</li>
+      </ul>
+      <p>Supplementary figures on removal costs and detention funding are drawn from the State Department, the Penn Wharton Budget Model, and ProPublica reporting, and are cited where used.</p>
+    </section>
+
+    <section id="scale">
+      <div class="prose">
+        <h2>The scale, pace, and cost of enforcement</h2>
+        <h3>Detention population</h3>
+        <p>As of early July 2026, <span class="num">66,096</span> people were being held in ICE detention. The FY2026 average daily population of <span class="num">64,508</span> is the highest sustained detention population in the agency's history. Since the start of the second Trump administration, ICE has booked <span class="num">591,089</span> distinct people into detention and reported <span class="num">483,392</span> removals over eighteen months. An estimated <span class="num">183,181</span> additional people were under alternatives-to-detention monitoring (smartphone apps, ankle or wrist monitors) as of July 11, 2026, at a reported cost of roughly $280,000 per day. Total deportation-related funding through FY2029, including mandatory appropriations and the reconciliation bill commonly known as the Big Beautiful Bill, totals approximately $296 billion, or roughly $2,300 per taxpayer over the FY2025–FY2029 window.</p>
+
+        <h3>Enforcement pace versus stated targets</h3>
+        <p>ICE's FY2026 Congressional Budget Justification, published in June 2025, requested funding for "the Administration's strategy of 1,000,000 removals per year and 100,000 detention beds," a target that had surfaced two months earlier in Washington Post reporting attributing the figure to White House Deputy Chief of Staff Stephen Miller. Reaching one million removals in a fiscal year requires a sustained pace of roughly <span class="num">83,333</span> per month. Nine months into FY2026, ICE's own published removal count stood at <span class="num">356,389</span>, a run rate of well under half a million annually, and less than half of the stated goal.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft" id="t-removals">Cumulative removals vs. required trajectory</span><span class="fs">To reach a target of 1,000,000 removals in FY2026</span></figcaption>
+        <ul class="legend"><li><span class="sw" style="background:#1f6b54"></span>Cumulative removals</li><li><span class="sw" style="background:#a9d0c2"></span>Pace needed for 1M</li></ul>
+        <div class="scroll"><svg viewBox="0 0 760 360" role="img" aria-labelledby="t-removals"><desc>Cumulative FY2026 removals rise steadily but stay far below the straight-line pace needed to reach one million by September 2026.</desc><line x1="78" x2="724" y1="312.0" y2="312.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="316.0" text-anchor="end" class="ax">0k</text><line x1="78" x2="724" y1="240.0" y2="240.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="244.0" text-anchor="end" class="ax">250k</text><line x1="78" x2="724" y1="168.0" y2="168.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="172.0" text-anchor="end" class="ax">500k</text><line x1="78" x2="724" y1="96.0" y2="96.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="100.0" text-anchor="end" class="ax">750k</text><line x1="78" x2="724" y1="24.0" y2="24.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="28.0" text-anchor="end" class="ax">1M</text><text x="78.0" y="340" text-anchor="middle" class="ax">Oct ’25</text><text x="195.5" y="340" text-anchor="middle" class="ax">Dec ’25</text><text x="312.9" y="340" text-anchor="middle" class="ax">Feb ’26</text><text x="430.4" y="340" text-anchor="middle" class="ax">Apr ’26</text><text x="547.8" y="340" text-anchor="middle" class="ax">Jun ’26</text><text x="665.3" y="340" text-anchor="middle" class="ax">Aug ’26</text><polyline points="78.0,288.0 136.7,264.0 195.5,240.0 254.2,216.0 312.9,192.0 371.6,168.0 430.4,144.0 489.1,120.0 547.8,96.0 606.5,72.0 665.3,48.0 724.0,24.0" fill="none" stroke="#a9d0c2" stroke-width="2.5" stroke-dasharray="5 5" stroke-linejoin="round"/><circle cx="78.0" cy="288.0" r="3.5" fill="#a9d0c2"/><circle cx="136.7" cy="264.0" r="3.5" fill="#a9d0c2"/><circle cx="195.5" cy="240.0" r="3.5" fill="#a9d0c2"/><circle cx="254.2" cy="216.0" r="3.5" fill="#a9d0c2"/><circle cx="312.9" cy="192.0" r="3.5" fill="#a9d0c2"/><circle cx="371.6" cy="168.0" r="3.5" fill="#a9d0c2"/><circle cx="430.4" cy="144.0" r="3.5" fill="#a9d0c2"/><circle cx="489.1" cy="120.0" r="3.5" fill="#a9d0c2"/><circle cx="547.8" cy="96.0" r="3.5" fill="#a9d0c2"/><circle cx="606.5" cy="72.0" r="3.5" fill="#a9d0c2"/><circle cx="665.3" cy="48.0" r="3.5" fill="#a9d0c2"/><circle cx="724.0" cy="24.0" r="3.5" fill="#a9d0c2"/><polyline points="78.0,303.4 136.7,293.3 195.5,283.2 254.2,274.6 312.9,265.3 371.6,256.4 430.4,248.6 489.1,240.0 547.8,231.9" fill="none" stroke="#1f6b54" stroke-width="2.5" stroke-linejoin="round"/><circle cx="78.0" cy="303.4" r="3.5" fill="#1f6b54"/><circle cx="136.7" cy="293.3" r="3.5" fill="#1f6b54"/><circle cx="195.5" cy="283.2" r="3.5" fill="#1f6b54"/><circle cx="254.2" cy="274.6" r="3.5" fill="#1f6b54"/><circle cx="312.9" cy="265.3" r="3.5" fill="#1f6b54"/><circle cx="371.6" cy="256.4" r="3.5" fill="#1f6b54"/><circle cx="430.4" cy="248.6" r="3.5" fill="#1f6b54"/><circle cx="489.1" cy="240.0" r="3.5" fill="#1f6b54"/><circle cx="547.8" cy="231.9" r="3.5" fill="#1f6b54"/></svg></div>
+      </figure>
+
+      <div class="prose">
+        <h3>The cost of removals</h3>
+        <p>Estimates of the average cost to arrest, detain, and remove one individual vary considerably depending on what is counted. The State Department's public figure is <a href="https://www.state.gov/releases/office-of-the-spokesperson/2026/03/state-department-expands-visa-bonds-to-combat-illegal-overstay-rates/?fbclid=IwY2xjawUFxRNwZG9mAWV4dG4DYWVtAjEwAGJyaWQRMUNFcUVXOHBydXF1MnJmZnZzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEevzph-RC-eUIkmpJhOrDRFtRbCEmzNKFyHsgIJ6tx-jR5gIfMqsc9MxQAWIk_aem_doRjNysAoriOd07BetJSMA"><!-- TODO: add source URL -->"over $18,000"</a> (ICE's own internal figure, per the workbook, is $17,121). Independent estimates <a href="https://budgetmodel.wharton.upenn.edu/p/2025-07-25-mass-deportation-of-unauthorized-immigrants-fiscal-and-economic-effects/"><!-- TODO: add source URL -->compiled by the Penn Wharton Budget Model</a> range from $30,591 to $109,880, averaging $70,236. The gap between the government's figure and independent estimates is not a matter of rounding; it reflects a disagreement over which costs are counted—detention days, court proceedings, transportation, litigation, and the economic value of labor withdrawn from the workforce.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft">Cost to arrest, detain, and remove one person</span><span class="fs">Government figure compared with independent estimates</span></figcaption>
+        <div class="hbars">
+          <div class="hbar"><div class="row"><span>ICE's own figure</span><span class="num">$17,121</span></div><div class="track"><div class="fill" style="width:15.6%;background:var(--ink)"></div></div></div>
+          <div class="hbar"><div class="row"><span>Lowest independent estimate</span><span class="num">$30,591</span></div><div class="track"><div class="fill" style="width:27.8%;background:var(--g1)"></div></div></div>
+          <div class="hbar"><div class="row"><span>Penn Wharton average estimate</span><span class="num">$70,236</span></div><div class="track"><div class="fill" style="width:63.9%;background:var(--g3)"></div></div></div>
+          <div class="hbar"><div class="row"><span>Highest independent estimate</span><span class="num">$109,880</span></div><div class="track"><div class="fill" style="width:100%;background:var(--g4)"></div></div></div>
+        </div>
+      </figure>
+    </section>
+
+    <section id="who">
+      <div class="prose">
+        <h2>Who is being detained</h2>
+        <h3>ICE's aggregate "criminal record" metric</h3>
+        <p>Administration officials have repeatedly described enforcement targets as "the worst of the worst." ICE's own data offers partial support for a version of this claim: as of early July 2026, the agency reported that 60 percent of people in detention had a "criminal record." That figure, however, combines two categories that a court would treat very differently: people with actual convictions and people facing pending, untested charges. Of the same <span class="num">65,765</span> detainees, only <span class="num">19,329</span> (29.4 percent) had a conviction of any kind; the remaining 70.6 percent were either awaiting trial on unresolved charges or held solely for a civil immigration violation, with no criminal charge or conviction at all. ICE does not separately publish the nature of the charges or convictions underlying its aggregate figure.</p>
+      </div>
+      <figure class="twoway">
+        <figcaption><span class="ft">The same 65,765 people, sorted two ways</span></figcaption>
+        <div class="label"><span class="how">Counted ICE's way: "has a criminal record"</span><span class="verdict">60% "criminals"</span></div>
+        <div class="stack" aria-hidden="true">
+          <div style="width:29.4%;background:var(--g2)">19,329</div><div style="width:30.8%;background:var(--g3)">20,247</div><div style="width:39.8%;background:var(--g4)">26,189</div>
+        </div>
+        <div class="bracket"><span style="width:60.2%">Grouped together as "has a criminal record"</span><span class="off" style="width:39.8%;text-align:right">Other immigration violators</span></div>
+
+        <div class="label" style="margin-top:2rem"><span class="how">Counted as a court would: "convicted"</span><span class="verdict">70.6% "legally innocent"</span></div>
+        <div class="stack" aria-hidden="true">
+          <div style="width:29.4%;background:var(--g2)">19,329</div><div style="width:30.8%;background:var(--g3)">20,247</div><div style="width:39.8%;background:var(--g4)">26,189</div>
+        </div>
+        <div class="bracket"><span class="off" style="width:29.4%">Convicted</span><span style="width:70.6%;text-align:right">No convictions</span></div>
+
+        <div class="keys">
+          <div><h4><span class="sw" style="background:var(--g2)"></span>Convicted criminal</h4><p>19,329 people with a conviction of any kind, at any point, of any severity, including immigration offenses and decades-old misdemeanors.</p></div>
+          <div><h4><span class="sw" style="background:var(--g3)"></span>Pending charges</h4><p>20,247 people accused, but not yet tried or convicted, of a crime of any kind.</p></div>
+          <div><h4><span class="sw" style="background:var(--g4)"></span>Other violator</h4><p>26,189 people with no convictions or pending charges, only a civil immigration status issue and nothing else.</p></div>
+        </div>
+      </figure>
+
+      <div class="prose">
+        <h3>ICE's internal threat-level system</h3>
+        <p>ICE separately assigns detainees a threat rating from 1 (most serious) to 3 (least serious) based on the severity and recency of criminal history. As of a July 9, 2026 snapshot limited to non-specialty facilities with at least one detainee, 72.1 percent of the population, or <span class="num">45,058</span> people, had no threat level assigned at all; only 12.3 percent were rated Level 1.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft">Detainees by ICE threat level</span><span class="fs">July 9, 2026 snapshot, non-specialty facilities</span></figcaption>
+        <div class="threatbar" aria-hidden="true">
+          <div style="width:12.3%;background:var(--g2)">L1</div><div style="width:6.3%;background:var(--g3)">L2</div><div style="width:9.3%;background:var(--g4)">L3</div><div style="width:72.1%;background:#dde5e1;color:var(--muted)">No level assigned</div>
+        </div>
+        <ul class="tlist">
+          <li><span class="sw" style="background:var(--g2)"></span><span><b>Threat Level 1</b>, most serious</span><span class="v">7,682 · 12.3%</span></li>
+          <li><span class="sw" style="background:var(--g3)"></span><span><b>Threat Level 2</b></span><span class="v">3,929 · 6.3%</span></li>
+          <li><span class="sw" style="background:var(--g4)"></span><span><b>Threat Level 3</b>, least serious</span><span class="v">5,847 · 9.3%</span></li>
+          <li><span class="sw" style="background:#dde5e1;border:1px solid var(--rule)"></span><span><b>No threat level assigned</b></span><span class="v">45,058 · 72.1%</span></li>
+        </ul>
+      </figure>
+
+      <div class="prose">
+        <h3>What the convictions actually consist of</h3>
+        <p>The FOIA data allows a closer look at what "criminal record" means in practice. Of <span class="num">616,455</span> detention stays recorded between January 21, 2025 and August 6, 2026 (representing <span class="num">591,089</span> distinct people), 67.8 percent involved no conviction at all, 29.8 percent involved a nonviolent conviction, and 2.4 percent involved a conviction classified as violent—roughly one in forty-one people booked into detention. Among those with a conviction, the ten most common offenses are led by driving under the influence, illegal entry, traffic offenses, assault, illegal re-entry, larceny, drug trafficking, dangerous-drug offenses, burglary, and domestic violence. Offenses more consistent with the "worst of the worst" framing appear much further down the list: sexual assault, aggravated assault with a weapon, and robbery together account for 1.25 percent of all ICE book-ins, and homicide and kidnapping do not appear among the twenty most common convictions at all.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft">Ten most common convictions</span><span class="fs">Most serious conviction per detention stay</span></figcaption>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Most serious conviction</th><th class="r">Stays</th><th class="r">Share of convicted</th><th class="r">Share of all book-ins</th></tr></thead>
+            <tbody>
+              <tr><td>Driving under the influence</td><td class="r">25,028</td><td class="r"><span class="inline-bar" style="width:44.7px"></span>14.9%</td><td class="r">4.85%</td></tr>
+              <tr><td>Illegal entry</td><td class="r">16,004</td><td class="r"><span class="inline-bar" style="width:28.5px"></span>9.5%</td><td class="r">3.10%</td></tr>
+              <tr><td>Traffic offense</td><td class="r">14,799</td><td class="r"><span class="inline-bar" style="width:26.4px"></span>8.8%</td><td class="r">2.87%</td></tr>
+              <tr><td>Assault</td><td class="r">10,922</td><td class="r"><span class="inline-bar" style="width:19.5px"></span>6.5%</td><td class="r">2.12%</td></tr>
+              <tr><td>Illegal re-entry</td><td class="r">8,550</td><td class="r"><span class="inline-bar" style="width:15.3px"></span>5.1%</td><td class="r">1.66%</td></tr>
+              <tr><td>Larceny</td><td class="r">4,808</td><td class="r"><span class="inline-bar" style="width:8.7px"></span>2.9%</td><td class="r">0.93%</td></tr>
+              <tr><td>Drug trafficking</td><td class="r">3,760</td><td class="r"><span class="inline-bar" style="width:6.6px"></span>2.2%</td><td class="r">0.73%</td></tr>
+              <tr><td>Dangerous drugs</td><td class="r">3,628</td><td class="r"><span class="inline-bar" style="width:6.6px"></span>2.2%</td><td class="r">0.70%</td></tr>
+              <tr><td>Burglary</td><td class="r">3,320</td><td class="r"><span class="inline-bar" style="width:6px"></span>2.0%</td><td class="r">0.64%</td></tr>
+              <tr><td>Domestic violence</td><td class="r">3,156</td><td class="r"><span class="inline-bar" style="width:5.7px"></span>1.9%</td><td class="r">0.61%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </figure>
+
+      <div class="prose">
+        <h3>Trends over time</h3>
+        <p>If enforcement activity were narrowing toward more serious cases, the share of detainees with convictions would be expected to rise over the course of the administration. The data shows the opposite. In the administration's first partial month, roughly half of those booked into detention had no conviction; by mid-2026, that share had risen to nearly three-quarters, while the share with violent convictions fell from 4.3 percent to 1.7 percent over the same period. This pattern is consistent with an enforcement approach driven by aggregate arrest targets rather than one prioritizing the most serious cases, a dynamic also reflected in reporting on internally set arrest quotas.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft" id="t-crim">Monthly ICE book-ins: share by criminality category</span><span class="fs">January 2025 – August 2026</span></figcaption>
+        <ul class="legend"><li><span class="sw" style="background:#a9d0c2"></span>No conviction</li><li><span class="sw" style="background:#3d8f75"></span>Nonviolent conviction</li><li><span class="sw" style="background:#023425"></span>Violent conviction</li></ul>
+        <div class="scroll"><svg viewBox="0 0 760 360" role="img" aria-labelledby="t-crim"><desc>The share of monthly book-ins with no conviction rises from about 52 percent in January 2025 to about 76 percent in August 2026; the violent-conviction share falls from 4.3 to 1.7 percent.</desc><line x1="60" x2="748" y1="304.0" y2="304.0" stroke="#c3d2ca" stroke-width="1"/><text x="50" y="308.0" text-anchor="end" class="ax">0%</text><line x1="60" x2="748" y1="233.0" y2="233.0" stroke="#c3d2ca" stroke-width="1"/><text x="50" y="237.0" text-anchor="end" class="ax">25%</text><line x1="60" x2="748" y1="162.0" y2="162.0" stroke="#c3d2ca" stroke-width="1"/><text x="50" y="166.0" text-anchor="end" class="ax">50%</text><line x1="60" x2="748" y1="91.0" y2="91.0" stroke="#c3d2ca" stroke-width="1"/><text x="50" y="95.0" text-anchor="end" class="ax">75%</text><line x1="60" x2="748" y1="20.0" y2="20.0" stroke="#c3d2ca" stroke-width="1"/><text x="50" y="24.0" text-anchor="end" class="ax">100%</text><rect x="64.1" y="156.3" width="26.1" height="147.7" fill="#a9d0c2"/><rect x="64.1" y="32.2" width="26.1" height="124.1" fill="#3d8f75"/><rect x="64.1" y="20.0" width="26.1" height="12.2" fill="#023425"/><text x="77.2" y="326" text-anchor="middle" class="ax">Jan</text><text x="77.2" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="98.5" y="150.6" width="26.1" height="153.4" fill="#a9d0c2"/><rect x="98.5" y="31.4" width="26.1" height="119.3" fill="#3d8f75"/><rect x="98.5" y="20.0" width="26.1" height="11.4" fill="#023425"/><text x="111.6" y="326" text-anchor="middle" class="ax">Feb</text><text x="111.6" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="132.9" y="147.8" width="26.1" height="156.2" fill="#a9d0c2"/><rect x="132.9" y="30.2" width="26.1" height="117.6" fill="#3d8f75"/><rect x="132.9" y="20.0" width="26.1" height="10.2" fill="#023425"/><text x="146.0" y="326" text-anchor="middle" class="ax">Mar</text><text x="146.0" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="167.3" y="147.8" width="26.1" height="156.2" fill="#a9d0c2"/><rect x="167.3" y="30.2" width="26.1" height="117.6" fill="#3d8f75"/><rect x="167.3" y="20.0" width="26.1" height="10.2" fill="#023425"/><text x="180.4" y="326" text-anchor="middle" class="ax">Apr</text><text x="180.4" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="201.7" y="133.6" width="26.1" height="170.4" fill="#a9d0c2"/><rect x="201.7" y="29.4" width="26.1" height="104.2" fill="#3d8f75"/><rect x="201.7" y="20.0" width="26.1" height="9.4" fill="#023425"/><text x="214.8" y="326" text-anchor="middle" class="ax">May</text><text x="214.8" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="236.1" y="116.6" width="26.1" height="187.4" fill="#a9d0c2"/><rect x="236.1" y="28.5" width="26.1" height="88.0" fill="#3d8f75"/><rect x="236.1" y="20.0" width="26.1" height="8.5" fill="#023425"/><text x="249.2" y="326" text-anchor="middle" class="ax">Jun</text><text x="249.2" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="270.5" y="122.2" width="26.1" height="181.8" fill="#a9d0c2"/><rect x="270.5" y="28.2" width="26.1" height="94.0" fill="#3d8f75"/><rect x="270.5" y="20.0" width="26.1" height="8.2" fill="#023425"/><text x="283.6" y="326" text-anchor="middle" class="ax">Jul</text><text x="283.6" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="304.9" y="119.4" width="26.1" height="184.6" fill="#a9d0c2"/><rect x="304.9" y="28.0" width="26.1" height="91.4" fill="#3d8f75"/><rect x="304.9" y="20.0" width="26.1" height="8.0" fill="#023425"/><text x="318.0" y="326" text-anchor="middle" class="ax">Aug</text><text x="318.0" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="339.3" y="108.0" width="26.1" height="196.0" fill="#a9d0c2"/><rect x="339.3" y="27.4" width="26.1" height="80.7" fill="#3d8f75"/><rect x="339.3" y="20.0" width="26.1" height="7.4" fill="#023425"/><text x="352.4" y="326" text-anchor="middle" class="ax">Sep</text><text x="352.4" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="373.7" y="105.2" width="26.1" height="198.8" fill="#a9d0c2"/><rect x="373.7" y="27.1" width="26.1" height="78.1" fill="#3d8f75"/><rect x="373.7" y="20.0" width="26.1" height="7.1" fill="#023425"/><text x="386.8" y="326" text-anchor="middle" class="ax">Oct</text><text x="386.8" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="408.1" y="102.4" width="26.1" height="201.6" fill="#a9d0c2"/><rect x="408.1" y="26.8" width="26.1" height="75.5" fill="#3d8f75"/><rect x="408.1" y="20.0" width="26.1" height="6.8" fill="#023425"/><text x="421.2" y="326" text-anchor="middle" class="ax">Nov</text><text x="421.2" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="442.5" y="102.4" width="26.1" height="201.6" fill="#a9d0c2"/><rect x="442.5" y="26.8" width="26.1" height="75.5" fill="#3d8f75"/><rect x="442.5" y="20.0" width="26.1" height="6.8" fill="#023425"/><text x="455.6" y="326" text-anchor="middle" class="ax">Dec</text><text x="455.6" y="342" text-anchor="middle" class="ax ax-yr">25</text><rect x="476.9" y="99.5" width="26.1" height="204.5" fill="#a9d0c2"/><rect x="476.9" y="26.5" width="26.1" height="73.0" fill="#3d8f75"/><rect x="476.9" y="20.0" width="26.1" height="6.5" fill="#023425"/><text x="490.0" y="326" text-anchor="middle" class="ax">Jan</text><text x="490.0" y="342" text-anchor="middle" class="ax ax-yr">26</text><rect x="511.3" y="110.9" width="26.1" height="193.1" fill="#a9d0c2"/><rect x="511.3" y="26.5" width="26.1" height="84.3" fill="#3d8f75"/><rect x="511.3" y="20.0" width="26.1" height="6.5" fill="#023425"/><text x="524.4" y="326" text-anchor="middle" class="ax">Feb</text><text x="524.4" y="342" text-anchor="middle" class="ax ax-yr">26</text><rect x="545.7" y="110.9" width="26.1" height="193.1" fill="#a9d0c2"/><rect x="545.7" y="26.2" width="26.1" height="84.6" fill="#3d8f75"/><rect x="545.7" y="20.0" width="26.1" height="6.2" fill="#023425"/><text x="558.8" y="326" text-anchor="middle" class="ax">Mar</text><text x="558.8" y="342" text-anchor="middle" class="ax ax-yr">26</text><rect x="580.1" y="110.9" width="26.1" height="193.1" fill="#a9d0c2"/><rect x="580.1" y="26.0" width="26.1" height="84.9" fill="#3d8f75"/><rect x="580.1" y="20.0" width="26.1" height="6.0" fill="#023425"/><text x="593.2" y="326" text-anchor="middle" class="ax">Apr</text><text x="593.2" y="342" text-anchor="middle" class="ax ax-yr">26</text><rect x="614.5" y="113.7" width="26.1" height="190.3" fill="#a9d0c2"/><rect x="614.5" y="26.0" width="26.1" height="87.8" fill="#3d8f75"/><rect x="614.5" y="20.0" width="26.1" height="6.0" fill="#023425"/><text x="627.6" y="326" text-anchor="middle" class="ax">May</text><text x="627.6" y="342" text-anchor="middle" class="ax ax-yr">26</text><rect x="648.9" y="99.5" width="26.1" height="204.5" fill="#a9d0c2"/><rect x="648.9" y="25.4" width="26.1" height="74.1" fill="#3d8f75"/><rect x="648.9" y="20.0" width="26.1" height="5.4" fill="#023425"/><text x="662.0" y="326" text-anchor="middle" class="ax">Jun</text><text x="662.0" y="342" text-anchor="middle" class="ax ax-yr">26</text><rect x="683.3" y="96.7" width="26.1" height="207.3" fill="#a9d0c2"/><rect x="683.3" y="25.1" width="26.1" height="71.6" fill="#3d8f75"/><rect x="683.3" y="20.0" width="26.1" height="5.1" fill="#023425"/><text x="696.4" y="326" text-anchor="middle" class="ax">Jul</text><text x="696.4" y="342" text-anchor="middle" class="ax ax-yr">26</text><rect x="717.7" y="88.2" width="26.1" height="215.8" fill="#a9d0c2"/><rect x="717.7" y="24.8" width="26.1" height="63.3" fill="#3d8f75"/><rect x="717.7" y="20.0" width="26.1" height="4.8" fill="#023425"/><text x="730.8" y="326" text-anchor="middle" class="ax">Aug</text><text x="730.8" y="342" text-anchor="middle" class="ax ax-yr">26</text></svg></div>
+      </figure>
+
+      <div class="prose">
+        <h3>Age distribution</h3>
+        <p>The FOIA data also show detention reaching both ends of the age spectrum: <span class="num">2,909</span> children under 13 and <span class="num">12,843</span> people aged 60 or older were booked into ICE detention during the period studied. Younger and older detainees are disproportionately unlikely to have any conviction—over 99 percent of those under 13, compared with roughly half of those in their 30s and 40s—while average length of stay rises steadily with age, from about 10 days among young children to nearly 57 days among detainees 70 and older.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft">Detention stays by age</span></figcaption>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Age</th><th class="r">Stays</th><th class="r">With no conviction</th><th class="r">Mean length of stay (days)</th></tr></thead>
+            <tbody>
+              <tr><td>Under 5</td><td class="r">261</td><td class="r">100%</td><td class="r">13.2</td></tr>
+              <tr><td>5–9</td><td class="r">1,652</td><td class="r">99.8%</td><td class="r">10.3</td></tr>
+              <tr><td>10–12</td><td class="r">996</td><td class="r">100%</td><td class="r">10.3</td></tr>
+              <tr><td>13–18</td><td class="r">3,233</td><td class="r">95.9%</td><td class="r">25.1</td></tr>
+              <tr><td>18–29</td><td class="r">156,911</td><td class="r">78.8%</td><td class="r">38.0</td></tr>
+              <tr><td>30–44</td><td class="r">241,732</td><td class="r">65.3%</td><td class="r">39.7</td></tr>
+              <tr><td>45–59</td><td class="r">98,081</td><td class="r">55.3%</td><td class="r">41.5</td></tr>
+              <tr><td>60–69</td><td class="r">11,388</td><td class="r">49.3%</td><td class="r">47.4</td></tr>
+              <tr><td>70 and older</td><td class="r">1,455</td><td class="r">33.1%</td><td class="r">56.9</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </figure>
+    </section>
+
+    <section id="stay">
+      <div class="prose">
+        <h2>Length of stay and bond</h2>
+        <p>Detainees without any charge or conviction have consistently experienced longer average stays than those with pending charges or prior convictions, though the gap has narrowed considerably over the course of the administration.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft" id="t-los">Average length of stay by criminality</span><span class="fs">Days, under the second Trump administration</span></figcaption>
+        <ul class="legend"><li><span class="sw" style="background:#a9d0c2"></span>No charges</li><li><span class="sw" style="background:#3d8f75"></span>Pending charges</li><li><span class="sw" style="background:#023425"></span>Convicted</li></ul>
+        <div class="scroll"><svg viewBox="0 0 760 360" role="img" aria-labelledby="t-los"><desc>Detainees with no charges had the longest average stays, peaking near 76 days in April 2025; by June 2026 all three groups were near 47 to 50 days.</desc><line x1="78" x2="724" y1="312.0" y2="312.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="316.0" text-anchor="end" class="ax">0</text><line x1="78" x2="724" y1="240.0" y2="240.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="244.0" text-anchor="end" class="ax">20</text><line x1="78" x2="724" y1="168.0" y2="168.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="172.0" text-anchor="end" class="ax">40</text><line x1="78" x2="724" y1="96.0" y2="96.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="100.0" text-anchor="end" class="ax">60</text><line x1="78" x2="724" y1="24.0" y2="24.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="28.0" text-anchor="end" class="ax">80</text><text x="78.0" y="340" text-anchor="middle" class="ax">Feb ’25</text><text x="158.8" y="340" text-anchor="middle" class="ax">Apr ’25</text><text x="239.5" y="340" text-anchor="middle" class="ax">Jun ’25</text><text x="320.2" y="340" text-anchor="middle" class="ax">Aug ’25</text><text x="401.0" y="340" text-anchor="middle" class="ax">Oct ’25</text><text x="481.8" y="340" text-anchor="middle" class="ax">Dec ’25</text><text x="562.5" y="340" text-anchor="middle" class="ax">Feb ’26</text><text x="643.2" y="340" text-anchor="middle" class="ax">Apr ’26</text><text x="724.0" y="340" text-anchor="middle" class="ax">Jun ’26</text><polyline points="78.0,103.2 118.4,74.4 158.8,38.4 199.1,47.4 239.5,124.8 279.9,106.8 320.2,79.8 360.6,112.2 401.0,130.2 441.4,128.4 481.8,126.6 522.1,108.6 562.5,99.6 602.9,85.2 643.2,79.8 683.6,119.4 724.0,133.8" fill="none" stroke="#a9d0c2" stroke-width="2.5" stroke-linejoin="round"/><circle cx="78.0" cy="103.2" r="3.5" fill="#a9d0c2"/><circle cx="118.4" cy="74.4" r="3.5" fill="#a9d0c2"/><circle cx="158.8" cy="38.4" r="3.5" fill="#a9d0c2"/><circle cx="199.1" cy="47.4" r="3.5" fill="#a9d0c2"/><circle cx="239.5" cy="124.8" r="3.5" fill="#a9d0c2"/><circle cx="279.9" cy="106.8" r="3.5" fill="#a9d0c2"/><circle cx="320.2" cy="79.8" r="3.5" fill="#a9d0c2"/><circle cx="360.6" cy="112.2" r="3.5" fill="#a9d0c2"/><circle cx="401.0" cy="130.2" r="3.5" fill="#a9d0c2"/><circle cx="441.4" cy="128.4" r="3.5" fill="#a9d0c2"/><circle cx="481.8" cy="126.6" r="3.5" fill="#a9d0c2"/><circle cx="522.1" cy="108.6" r="3.5" fill="#a9d0c2"/><circle cx="562.5" cy="99.6" r="3.5" fill="#a9d0c2"/><circle cx="602.9" cy="85.2" r="3.5" fill="#a9d0c2"/><circle cx="643.2" cy="79.8" r="3.5" fill="#a9d0c2"/><circle cx="683.6" cy="119.4" r="3.5" fill="#a9d0c2"/><circle cx="724.0" cy="133.8" r="3.5" fill="#a9d0c2"/><polyline points="78.0,139.2 118.4,146.4 158.8,148.2 199.1,151.8 239.5,150.0 279.9,139.2 320.2,133.8 360.6,133.8 401.0,157.2 441.4,153.6 481.8,153.6 522.1,139.2 562.5,135.6 602.9,133.8 643.2,130.2 683.6,141.0 724.0,141.0" fill="none" stroke="#3d8f75" stroke-width="2.5" stroke-linejoin="round"/><circle cx="78.0" cy="139.2" r="3.5" fill="#3d8f75"/><circle cx="118.4" cy="146.4" r="3.5" fill="#3d8f75"/><circle cx="158.8" cy="148.2" r="3.5" fill="#3d8f75"/><circle cx="199.1" cy="151.8" r="3.5" fill="#3d8f75"/><circle cx="239.5" cy="150.0" r="3.5" fill="#3d8f75"/><circle cx="279.9" cy="139.2" r="3.5" fill="#3d8f75"/><circle cx="320.2" cy="133.8" r="3.5" fill="#3d8f75"/><circle cx="360.6" cy="133.8" r="3.5" fill="#3d8f75"/><circle cx="401.0" cy="157.2" r="3.5" fill="#3d8f75"/><circle cx="441.4" cy="153.6" r="3.5" fill="#3d8f75"/><circle cx="481.8" cy="153.6" r="3.5" fill="#3d8f75"/><circle cx="522.1" cy="139.2" r="3.5" fill="#3d8f75"/><circle cx="562.5" cy="135.6" r="3.5" fill="#3d8f75"/><circle cx="602.9" cy="133.8" r="3.5" fill="#3d8f75"/><circle cx="643.2" cy="130.2" r="3.5" fill="#3d8f75"/><circle cx="683.6" cy="141.0" r="3.5" fill="#3d8f75"/><circle cx="724.0" cy="141.0" r="3.5" fill="#3d8f75"/><polyline points="78.0,150.0 118.4,151.8 158.8,159.0 199.1,171.6 239.5,168.0 279.9,162.6 320.2,144.6 360.6,141.0 401.0,142.8 441.4,144.6 481.8,153.6 522.1,146.4 562.5,144.6 602.9,124.8 643.2,123.0 683.6,141.0 724.0,142.8" fill="none" stroke="#023425" stroke-width="2.5" stroke-linejoin="round"/><circle cx="78.0" cy="150.0" r="3.5" fill="#023425"/><circle cx="118.4" cy="151.8" r="3.5" fill="#023425"/><circle cx="158.8" cy="159.0" r="3.5" fill="#023425"/><circle cx="199.1" cy="171.6" r="3.5" fill="#023425"/><circle cx="239.5" cy="168.0" r="3.5" fill="#023425"/><circle cx="279.9" cy="162.6" r="3.5" fill="#023425"/><circle cx="320.2" cy="144.6" r="3.5" fill="#023425"/><circle cx="360.6" cy="141.0" r="3.5" fill="#023425"/><circle cx="401.0" cy="142.8" r="3.5" fill="#023425"/><circle cx="441.4" cy="144.6" r="3.5" fill="#023425"/><circle cx="481.8" cy="153.6" r="3.5" fill="#023425"/><circle cx="522.1" cy="146.4" r="3.5" fill="#023425"/><circle cx="562.5" cy="144.6" r="3.5" fill="#023425"/><circle cx="602.9" cy="124.8" r="3.5" fill="#023425"/><circle cx="643.2" cy="123.0" r="3.5" fill="#023425"/><circle cx="683.6" cy="141.0" r="3.5" fill="#023425"/><circle cx="724.0" cy="142.8" r="3.5" fill="#023425"/></svg></div>
+      </figure>
+      <div class="prose">
+        <p>Bond amounts for eligible detainees have risen in parallel, from an average of $6,910 in February 2025 to $9,539 by June 2026.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft" id="t-bond">Average bond amount</span><span class="fs">Under the second Trump administration</span></figcaption>
+        <div class="scroll"><svg viewBox="0 0 760 340" role="img" aria-labelledby="t-bond"><desc>Average bond rose from $6,910 in February 2025 to $9,539 in June 2026.</desc><line x1="78" x2="744" y1="286.0" y2="286.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="290.0" text-anchor="end" class="ax">$0</text><line x1="78" x2="744" y1="222.0" y2="222.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="226.0" text-anchor="end" class="ax">$2,500</text><line x1="78" x2="744" y1="158.0" y2="158.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="162.0" text-anchor="end" class="ax">$5,000</text><line x1="78" x2="744" y1="94.0" y2="94.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="98.0" text-anchor="end" class="ax">$7,500</text><line x1="78" x2="744" y1="30.0" y2="30.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="34.0" text-anchor="end" class="ax">$10,000</text><rect x="83.5" y="109.1" width="28.2" height="176.9" fill="#3d8f75" rx="2"><title>Feb 2025: $6,910</title></rect><text x="97.6" y="308" text-anchor="middle" class="ax">Feb</text><text x="97.6" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="122.7" y="107.3" width="28.2" height="178.7" fill="#3d8f75" rx="2"><title>Mar 2025: $6,980</title></rect><text x="136.8" y="308" text-anchor="middle" class="ax">Mar</text><text x="136.8" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="161.8" y="106.0" width="28.2" height="180.0" fill="#3d8f75" rx="2"><title>Apr 2025: $7,030</title></rect><text x="175.9" y="308" text-anchor="middle" class="ax">Apr</text><text x="175.9" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="201.0" y="100.1" width="28.2" height="185.9" fill="#3d8f75" rx="2"><title>May 2025: $7,260</title></rect><text x="215.1" y="308" text-anchor="middle" class="ax">May</text><text x="215.1" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="240.2" y="106.8" width="28.2" height="179.2" fill="#3d8f75" rx="2"><title>Jun 2025: $7,000</title></rect><text x="254.3" y="308" text-anchor="middle" class="ax">Jun</text><text x="254.3" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="279.4" y="96.6" width="28.2" height="189.4" fill="#3d8f75" rx="2"><title>Jul 2025: $7,400</title></rect><text x="293.5" y="308" text-anchor="middle" class="ax">Jul</text><text x="293.5" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="318.5" y="76.1" width="28.2" height="209.9" fill="#3d8f75" rx="2"><title>Aug 2025: $8,200</title></rect><text x="332.6" y="308" text-anchor="middle" class="ax">Aug</text><text x="332.6" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="357.7" y="85.6" width="28.2" height="200.4" fill="#3d8f75" rx="2"><title>Sep 2025: $7,830</title></rect><text x="371.8" y="308" text-anchor="middle" class="ax">Sep</text><text x="371.8" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="396.9" y="97.8" width="28.2" height="188.2" fill="#3d8f75" rx="2"><title>Oct 2025: $7,350</title></rect><text x="411.0" y="308" text-anchor="middle" class="ax">Oct</text><text x="411.0" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="436.1" y="92.2" width="28.2" height="193.8" fill="#3d8f75" rx="2"><title>Nov 2025: $7,570</title></rect><text x="450.2" y="308" text-anchor="middle" class="ax">Nov</text><text x="450.2" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="475.2" y="106.3" width="28.2" height="179.7" fill="#3d8f75" rx="2"><title>Dec 2025: $7,020</title></rect><text x="489.4" y="308" text-anchor="middle" class="ax">Dec</text><text x="489.4" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="514.4" y="86.8" width="28.2" height="199.2" fill="#3d8f75" rx="2"><title>Jan 2026: $7,780</title></rect><text x="528.5" y="308" text-anchor="middle" class="ax">Jan</text><text x="528.5" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="553.6" y="59.7" width="28.2" height="226.3" fill="#3d8f75" rx="2"><title>Feb 2026: $8,840</title></rect><text x="567.7" y="308" text-anchor="middle" class="ax">Feb</text><text x="567.7" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="592.8" y="57.1" width="28.2" height="228.9" fill="#3d8f75" rx="2"><title>Mar 2026: $8,940</title></rect><text x="606.9" y="308" text-anchor="middle" class="ax">Mar</text><text x="606.9" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="632.0" y="39.7" width="28.2" height="246.3" fill="#3d8f75" rx="2"><title>Apr 2026: $9,620</title></rect><text x="646.1" y="308" text-anchor="middle" class="ax">Apr</text><text x="646.1" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="671.1" y="44.8" width="28.2" height="241.2" fill="#3d8f75" rx="2"><title>May 2026: $9,420</title></rect><text x="685.2" y="308" text-anchor="middle" class="ax">May</text><text x="685.2" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="710.3" y="41.8" width="28.2" height="244.2" fill="#3d8f75" rx="2"><title>Jun 2026: $9,539</title></rect><text x="724.4" y="308" text-anchor="middle" class="ax">Jun</text><text x="724.4" y="324" text-anchor="middle" class="ax ax-yr">2026</text></svg></div>
+      </figure>
+    </section>
+
+    <section id="releases">
+      <div class="prose">
+        <h2>Court-ordered releases</h2>
+        <p>ICE's FY2025 detention workbook contained no line item for court-ordered releases; the FY2026 workbook does. New reporting categories of this kind typically emerge not for stylistic reasons but because a number has grown too large to remain folded into "Other." The volume here is traceable to a specific policy: after the Department of Homeland Security adopted a policy of mandatory detention without bond hearings for anyone who entered without inspection, detainees increasingly sought release through federal habeas corpus petitions. As of late August 2026, eight federal appeals <a href="https://www.aclu.org/press-releases/another-federal-appeals-court-rejects-trump-mandatory-detention-policy-2"><!-- TODO: add source URL -->courts had found the underlying policy unlawful</a>. Court-ordered releases rose from roughly 130 in October 2025 to over 2,000 in May 2026.</p>
+      </div>
+      <figure>
+        <figcaption><span class="ft" id="t-rel">Court-ordered immigration detention releases, by month</span></figcaption>
+        <div class="scroll"><svg viewBox="0 0 760 340" role="img" aria-labelledby="t-rel"><desc>Court-ordered releases rose from about 130 in October 2025 to over 2,000 in May 2026.</desc><line x1="78" x2="744" y1="286.0" y2="286.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="290.0" text-anchor="end" class="ax">0</text><line x1="78" x2="744" y1="234.8" y2="234.8" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="238.8" text-anchor="end" class="ax">500</text><line x1="78" x2="744" y1="183.6" y2="183.6" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="187.6" text-anchor="end" class="ax">1,000</text><line x1="78" x2="744" y1="132.4" y2="132.4" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="136.4" text-anchor="end" class="ax">1,500</text><line x1="78" x2="744" y1="81.2" y2="81.2" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="85.2" text-anchor="end" class="ax">2,000</text><line x1="78" x2="744" y1="30.0" y2="30.0" stroke="#c3d2ca" stroke-width="1"/><text x="68" y="34.0" text-anchor="end" class="ax">2,500</text><rect x="88.4" y="272.7" width="53.3" height="13.3" fill="#3d8f75" rx="2"><title>Oct 2025: 130</title></rect><text x="115.0" y="308" text-anchor="middle" class="ax">Oct</text><text x="115.0" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="162.4" y="256.3" width="53.3" height="29.7" fill="#3d8f75" rx="2"><title>Nov 2025: 290</title></rect><text x="189.0" y="308" text-anchor="middle" class="ax">Nov</text><text x="189.0" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="236.4" y="235.8" width="53.3" height="50.2" fill="#3d8f75" rx="2"><title>Dec 2025: 490</title></rect><text x="263.0" y="308" text-anchor="middle" class="ax">Dec</text><text x="263.0" y="324" text-anchor="middle" class="ax ax-yr">2025</text><rect x="310.4" y="171.3" width="53.3" height="114.7" fill="#3d8f75" rx="2"><title>Jan 2026: 1,120</title></rect><text x="337.0" y="308" text-anchor="middle" class="ax">Jan</text><text x="337.0" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="384.4" y="109.9" width="53.3" height="176.1" fill="#3d8f75" rx="2"><title>Feb 2026: 1,720</title></rect><text x="411.0" y="308" text-anchor="middle" class="ax">Feb</text><text x="411.0" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="458.4" y="109.9" width="53.3" height="176.1" fill="#3d8f75" rx="2"><title>Mar 2026: 1,720</title></rect><text x="485.0" y="308" text-anchor="middle" class="ax">Mar</text><text x="485.0" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="532.4" y="131.4" width="53.3" height="154.6" fill="#3d8f75" rx="2"><title>Apr 2026: 1,510</title></rect><text x="559.0" y="308" text-anchor="middle" class="ax">Apr</text><text x="559.0" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="606.4" y="79.2" width="53.3" height="206.8" fill="#3d8f75" rx="2"><title>May 2026: 2,020</title></rect><text x="633.0" y="308" text-anchor="middle" class="ax">May</text><text x="633.0" y="324" text-anchor="middle" class="ax ax-yr">2026</text><rect x="680.4" y="95.5" width="53.3" height="190.5" fill="#3d8f75" rx="2"><title>Jun 2026: 1,860</title></rect><text x="707.0" y="308" text-anchor="middle" class="ax">Jun</text><text x="707.0" y="324" text-anchor="middle" class="ax ax-yr">2026</text></svg></div>
+      </figure>
+    </section>
+
+    <section id="capacity" class="prose">
+      <h2>Detention capacity and facility oversight</h2>
+      <p>Nearly two-thirds of the detained population is held in facilities operated under private contract. Sixty-seven facilities carry "guaranteed minimum" bed clauses, under which the government pays for a fixed number of beds regardless of occupancy. As of the most recent facility snapshot (July 9, 2026), only 56.4 percent of beds in these facilities were occupied, meaning <span class="num">20,815</span> contracted beds went unused on that date alone.</p>
+      <p>Oversight has not kept pace with the buildup in capacity. Five facilities holding 433 people carry a failed final inspection rating, and forty-two facilities holding <span class="num">3,669</span> people have no final inspection rating on record at all. The bar for a passing rating appears low in practice: Winn Correctional Center in Louisiana passed its inspection cycles despite contemporaneous reports of staff placing detainees in chokeholds, discolored water, improperly stored food, and uninhabitable sleeping conditions.</p>
+    </section>
+
+    <section id="gaps" class="prose">
+      <h2>Gaps in official reporting</h2>
+      <p>ICE's semiannual reporting recorded ten U.S. citizens arrested across FY2025 and FY2026 combined. Independent reporting by ProPublica identified more than 170 such incidents in the first nine months of the administration alone, including 20 children, two of whom had cancer at the time of their detention. ICE's fiscal-year reporting also omits in-custody deaths entirely. 2025 was already the deadliest year in the agency's history for in-custody deaths; 2026 has surpassed it. The FOIA dataset used throughout this report separately documents 47 in-custody deaths during the second Trump administration.</p>
+    </section>
+
+    <section id="discussion" class="prose">
+      <h2>Discussion</h2>
+      <p>Taken together, these findings complicate the "worst of the worst" framing that has anchored public discussion of immigration enforcement since January 2025. ICE's own threat-rating system cannot classify the risk posed by nearly three-quarters of the people it detains, for the simple reason that most have no conviction to base a rating on. The share of detainees without any conviction has grown, not shrunk, since the administration began—the opposite of what a strategy narrowing toward serious offenders would produce, and consistent instead with a system oriented around volume-based arrest targets. At the same time, the enforcement apparatus remains well short of its own stated numerical goals, even as its cost, footprint, and use of civil detention authority have expanded substantially. Independent reporting suggests the government's own figures likely understate the program's reach into U.S. citizens and its human cost in custodial deaths. Further research, particularly using the FOIA dataset's granularity on individual case outcomes, could usefully assess whether these enforcement patterns are shifting as ongoing habeas litigation over mandatory detention proceeds through the federal courts.</p>
+    </section>
+  </article>
+</div>
+
+<footer>
+  <div class="inner">
+    <strong>ICE by the Numbers</strong>
+    <p>By Audrey Hunsberger. Sources: ICE detention statistics workbooks (FY2025–FY2026, published July 20, 2026); Deportation Data Project FOIA release (January 21, 2025 – August 6, 2026); State Department; Penn Wharton Budget Model; ProPublica.</p>
+  </div>
+</footer>
+
+<script>
+// Highlight the current section in the contents sidebar
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  if(!('IntersectionObserver' in window)||!links.length)return;
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){links.forEach(function(a){a.classList.remove('active')});
+        var a=map[e.target.id]; if(a)a.classList.add('active');}
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  Object.keys(map).forEach(function(id){var s=document.getElementById(id); if(s)obs.observe(s)});
+})();
+</script>
+</body>
+</html>
